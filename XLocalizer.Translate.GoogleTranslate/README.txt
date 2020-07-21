@@ -15,7 +15,7 @@ Instructions to use this package :
 
 - Register in startup:
 ````
-services.AddHttpClient<ITranslationService, GoogleTranslateService>();
+services.AddHttpClient<ITranslator, GoogleTranslateService>();
 ````
 
 Repository: https://github.com/LazZiya/TranslationServices
