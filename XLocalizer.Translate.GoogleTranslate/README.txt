@@ -7,7 +7,7 @@ Instructions to use this package :
 
 ````
 {
-  "XLocalizer.TranslationServices": {
+  "XLocalizer.Translate": {
     "RapidApiKey": "xxx-rapid-api-key-xxx"
   }
 }

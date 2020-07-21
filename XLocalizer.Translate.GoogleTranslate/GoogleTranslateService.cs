@@ -32,7 +32,7 @@ namespace XLocalizer.Translate.GoogleTranslate
         public GoogleTranslateService(HttpClient httpClient, IConfiguration configuration, ILogger<GoogleTranslateService> logger)
         {
             _httpClient = httpClient;
-            _rapidApiKey = configuration["XLocalizer.TranslationServices:RapidApiKey"];
+            _rapidApiKey = configuration["XLocalizer.Translate:RapidApiKey"];
             _logger = logger;
         }
 
