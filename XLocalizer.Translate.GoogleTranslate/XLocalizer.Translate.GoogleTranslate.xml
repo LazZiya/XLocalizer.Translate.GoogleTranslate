@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XLocalizer.Translate.GoogleTranslate</name>
+    </assembly>
+    <members>
+        <member name="T:XLocalizer.Translate.GoogleTranslate.GoogleTranslateResult">
+            <summary>
+            Google translate result object
+            </summary>
+        </member>
+        <member name="P:XLocalizer.Translate.GoogleTranslate.GoogleTranslateResult.Data">
+            <summary>
+            Google trnaslate data object
+            </summary>
+        </member>
+        <member name="T:XLocalizer.Translate.GoogleTranslate.GoogleData">
+            <summary>
+            Google translate data object
+            </summary>
+        </member>
+        <member name="P:XLocalizer.Translate.GoogleTranslate.GoogleData.Translations">
+            <summary>
+            Google translate result list
+            </summary>
+        </member>
+        <member name="T:XLocalizer.Translate.GoogleTranslate.GoogleTranslation">
+            <summary>
+            Google tranlste result text
+            </summary>
+        </member>
+        <member name="P:XLocalizer.Translate.GoogleTranslate.GoogleTranslation.TranslatedText">
+            <summary>
+            Google translate result text
+            </summary>
+        </member>
+        <member name="T:XLocalizer.Translate.GoogleTranslate.GoogleTranslateStringTranslator">
+            <summary>
+            Google translate service
+            </summary>
+        </member>
+        <member name="P:XLocalizer.Translate.GoogleTranslate.GoogleTranslateStringTranslator.ServiceName">
+            <summary>
+            Service name
+            </summary>
+        </member>
+        <member name="M:XLocalizer.Translate.GoogleTranslate.GoogleTranslateStringTranslator.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{XLocalizer.Translate.GoogleTranslate.GoogleTranslateStringTranslator})">
+            <summary>
+            Initialzie google translate service
+            </summary>
+            <param name="httpClient"></param>
+            <param name="configuration"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:XLocalizer.Translate.GoogleTranslate.GoogleTranslateStringTranslator.TranslateAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Run async translation task
+            </summary>
+            <param name="source">Source language e.g. en</param>
+            <param name="target">Target language e.g. tr</param>
+            <param name="text">Text to be translated</param>
+            <param name="format">Text format: html or text</param>
+            <returns><see cref="T:XLocalizer.Translate.TranslationResult"/></returns>
+        </member>
+        <member name="M:XLocalizer.Translate.GoogleTranslate.GoogleTranslateStringTranslator.TryTranslate(System.String,System.String,System.String,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="target"></param>
+            <param name="text"></param>
+            <param name="translation"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
