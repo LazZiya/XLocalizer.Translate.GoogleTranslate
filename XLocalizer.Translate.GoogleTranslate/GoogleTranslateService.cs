@@ -21,7 +21,6 @@ namespace XLocalizer.Translate.GoogleTranslate
 
         private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
-        private readonly string _rapidApiKey;
 
         /// <summary>
         /// Initialzie google translate service
@@ -31,8 +30,12 @@ namespace XLocalizer.Translate.GoogleTranslate
         /// <param name="logger"></param>
         public GoogleTranslateService(HttpClient httpClient, IConfiguration configuration, ILogger<GoogleTranslateService> logger)
         {
-            _httpClient = httpClient;
-            _rapidApiKey = configuration["XLocalizer.Translate:RapidApiKey"];
+            _httpClient = httpClient ?? throw new NullReferenceException(nameof(httpClient));
+
+            var _rapidApiKey = configuration["XLocalizer.Translate:RapidApiKey"] ?? throw new NullReferenceException("RapidApi key not found");
+            _httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", _rapidApiKey);
+            _httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "google-translate1.p.rapidapi.com");
+
             _logger = logger;
         }
 
@@ -46,16 +49,8 @@ namespace XLocalizer.Translate.GoogleTranslate
         /// <returns><see cref="TranslationResult"/></returns>
         public async Task<TranslationResult> TranslateAsync(string source, string target, string text, string format)
         {
-            if (string.IsNullOrWhiteSpace(_rapidApiKey))
-            {
-                throw new NullReferenceException(nameof(_rapidApiKey));
-            }
-
             try
             {
-                _httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", _rapidApiKey);
-                _httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "google-translate1.p.rapidapi.com");
-
                 var list = new List<KeyValuePair<string, string>>();
                 list.Add(new KeyValuePair<string, string>("format", format));
                 list.Add(new KeyValuePair<string, string>("source", source));
