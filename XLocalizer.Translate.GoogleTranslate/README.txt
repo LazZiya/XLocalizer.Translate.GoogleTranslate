@@ -18,4 +18,5 @@ Instructions to use this package :
 services.AddHttpClient<ITranslator, GoogleTranslateService>();
 ````
 
-Repository: https://github.com/LazZiya/TranslationServices
+Repository: https://github.com/LazZiya/XLocalizer.Translate.GoogleTranslate
+Docs: https://docs.ziyad.info/en/XLocalizer/v1.0/translate-services-google.md
