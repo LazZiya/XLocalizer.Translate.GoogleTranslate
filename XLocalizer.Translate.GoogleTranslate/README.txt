@@ -19,3 +19,4 @@ services.AddHttpClient<ITranslator, GoogleTranslateService>();
 ````
 
 Repository: https://github.com/LazZiya/TranslationServices
+Docs: https://docs.ziyad.info/en/XLocalizer/v1.0/translate-services-google.md
