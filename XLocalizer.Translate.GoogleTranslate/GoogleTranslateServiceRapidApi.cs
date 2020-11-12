@@ -12,16 +12,15 @@ namespace XLocalizer.Translate.GoogleTranslate
     /// <summary>
     /// Google translate service
     /// </summary>
-    public class GoogleTranslateService : ITranslator
+    public class GoogleTranslateServiceRapidApi : ITranslator
     {
         /// <summary>
         /// Service name
         /// </summary>
-        public string ServiceName => "Google Translate";
+        public string ServiceName => "Google Translate - RapidApi";
 
         private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
-        private readonly string _key;
 
         /// <summary>
         /// Initialzie google translate service
@@ -29,11 +28,13 @@ namespace XLocalizer.Translate.GoogleTranslate
         /// <param name="httpClient"></param>
         /// <param name="configuration"></param>
         /// <param name="logger"></param>
-        public GoogleTranslateService(HttpClient httpClient, IConfiguration configuration, ILogger<GoogleTranslateService> logger)
+        public GoogleTranslateServiceRapidApi(HttpClient httpClient, IConfiguration configuration, ILogger<GoogleTranslateService> logger)
         {
             _httpClient = httpClient ?? throw new NullReferenceException(nameof(httpClient));
 
-            _key = configuration["XLocalizer.Translate:Google:Key"] ?? throw new NullReferenceException("Api key not found");
+            var _rapidApiKey = configuration["XLocalizer.Translate:RapidApiKey"] ?? throw new NullReferenceException("RapidApi key not found");
+            _httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", _rapidApiKey);
+            _httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "google-translate1.p.rapidapi.com");
 
             _logger = logger;
         }
@@ -55,12 +56,11 @@ namespace XLocalizer.Translate.GoogleTranslate
                 list.Add(new KeyValuePair<string, string>("source", source));
                 list.Add(new KeyValuePair<string, string>("target", target));
                 list.Add(new KeyValuePair<string, string>("q", text));
-                list.Add(new KeyValuePair<string, string>("key", _key));
 
                 var appContent = new FormUrlEncodedContent(list);
 
-                var response = await _httpClient.PostAsync("https://translation.googleapis.com/language/translate/v2", appContent);
-                _logger.LogInformation($"Response from google: {ServiceName} - {response.StatusCode}");
+                var response = await _httpClient.PostAsync("https://google-translate1.p.rapidapi.com/language/translate/v2", appContent);
+                _logger.LogInformation($"Response: {ServiceName} - {response.StatusCode}");
                 /*
                  * Sample response content for "Back" translation
                  * {
