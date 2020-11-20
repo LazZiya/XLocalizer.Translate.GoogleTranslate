@@ -33,7 +33,7 @@ namespace XLocalizer.Translate.GoogleTranslate
         {
             _httpClient = httpClient ?? throw new NullReferenceException(nameof(httpClient));
 
-            _key = configuration["XLocalizer.Translate:Google:Key"] ?? throw new NullReferenceException("Api key not found");
+            _key = configuration["XLocalizer.Translate:Google:Key"] ?? throw new NullReferenceException("Google API key was not found! For more details see https://docs.ziyad.info/en/XLocalizer/v1.0/translate-services-google.md");
 
             _logger = logger;
         }
